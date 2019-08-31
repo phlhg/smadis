@@ -1,0 +1,335 @@
+.hub_module[data-module='news'] .page_wrapper .page,
+.hub_module[data-module='spotify'] .center span {
+    transition: all 0.2s ease-in-out;
+}
+
+
+.hub_module[data-module='clock'] .hub_center {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.hub_module[data-module='clock'] .hub_time {
+    display: block;
+    line-height: 300px;
+    font-size: 300px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.hub_module[data-module='clock'] .hub_time > span {
+    line-height: inherit;
+    font-size: inherit;
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+}
+
+.hub_module[data-module='clock'] .hub_date {
+    display: block;
+    line-height: 50px;
+    font-size: 50px;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection {
+    display: block;
+    position: relative;
+    padding: 5px 0 12px 100px;
+    min-height: 40px;
+    font-size: 25px;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection .phub_connection_name{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 85px;
+    background-color: #fff;
+    color: #000;
+    padding: 5px 8px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    border-radius: 2px; 
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection .phub_connection_name.bus {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection .phub_connection_name.ir {
+    background-color: #f00;
+    font-style: italic;
+    color: #fff;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection .phub_connection_name.re {
+    color: #f00;
+    border: 2px solid #f00;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection .phub_connection_meta {
+    display: block;
+    position: relative;
+    color: rgb(180,180,180);
+    font-size: 14px; 
+    line-height: 18px;
+    margin: 6px 0 0 0;
+}
+
+.hub_module[data-module='publictransport'] .phub_connection .phub_connection_meta > i {
+    height: 20px; width: 20px; vertical-align: text-bottom;
+}
+
+.hub_module[data-module='news'] {
+    padding: 0;
+}
+
+.hub_module[data-module='news'] .page {
+    position: absolute; 
+    display: block;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: #000;
+    padding: 40px 40px;
+    column-count: 2;
+    column-gap: 60px;
+    visibility: hidden;
+    transition-duration: 2s;
+    opacity: 0;
+}
+
+.hub_module[data-module='news'] .page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hub_module[data-module='news'] .page.next {
+}
+
+.hub_module[data-module='news'] article {
+    display: block;
+    position: relative;
+    padding: 0 130px 0 0;
+    height: 135px;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgb(180,180,180);
+    -webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+    overflow: hidden;
+}
+
+.hub_module[data-module='news'] article .center {
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translate(0,-50%);
+    -webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+}
+
+.hub_module[data-module='news'] article .image {
+    display: block;
+    position: absolute;
+    width: 110px; height: 110px;
+    top: 50%; right: 0;
+    background-size: cover; 
+    background-position: center;
+    border-radius: 10px;
+    transform: translate(0,-50%);
+    background-color: rgb(50,50,50)
+}
+
+.hub_module[data-module='news'] article .title {
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    line-height: 26px;
+    display: block;
+    margin: 0 0 5px 0;
+}
+
+.hub_module[data-module='weather'] {
+    padding-left: 240px;
+}
+
+.hub_module[data-module='weather'] .icon {
+    position: absolute; 
+    display: block;
+    width: 200px;
+    height: calc(100% - 150px);
+    top: 40px; left: 40px;
+    background-size: 120% auto;
+    background-position: center;
+}
+
+.hub_module[data-module='weather'] .temp {
+    position: absolute; 
+    display: inline-block;
+    top: calc(50% - 35px); left: 240px;
+    width: calc(100% - 280px);
+    text-align: center;
+    transform: translate(0,-50%);
+    font-size: 60px;
+}
+
+.hub_module[data-module='weather'] .forecast_temp, .hub_module[data-module='weather'] .forecast_rain {
+    position: absolute;
+    display: block;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hub_module[data-module='weather'] .forecast_temp polygon, .hub_module[data-module='weather'] .forecast_rain path {
+    fill: transparent;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hub_module[data-module='weather'] .forecast_temp path {
+    stroke: rgba(255,0,0,0.6);
+}
+
+.hub_module[data-module='weather'] .forecast_rain path {
+    fill: rgba(0, 182, 237, 0.4);
+}
+
+.hub_module[data-module='weather'] .forecast_timeline {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.hub_module[data-module='weather'] .forecast_timeline > span {
+    position: relative;
+    display: block;
+    padding: 40px 5px 10px 5px;
+    width: 50px;
+    text-align: center;
+    color: rgb(255,255,255,0.5);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.hub_module[data-module='weather'] .forecast_timeline > span > span{
+    display: block;
+    font-weight: bold;
+    color: #fff;
+}
+
+.hub_module[data-module='weather'] .forecast_timeline > span > img {
+    position: absolute;
+    display: block;
+    left: 5px; top: 0;
+    width: 40px; height: 40px;
+}
+
+.hub_module[data-module='spotify'] {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+}
+
+.hub_module[data-module='spotify'] .center {
+    display: inline-block;
+    position: relative;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    max-width: calc(100% - 40px);
+    z-index: +1;
+}
+
+.hub_module[data-module='spotify'] .center .img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    outline: 0; border: none;
+    background-color: rgb(255,255,255,0.05);
+    background-position: center;
+    background-size: cover;
+}
+
+.hub_module[data-module='spotify'] .bg {
+    display: block;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 30vw;
+    height: 30vw;
+    background-position: center;
+    background-size: cover;
+    filter: blur(50px);
+    opacity: 0.5;
+}
+
+.hub_module[data-module='spotify']:after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(closest-side, rgba(0,0,0,0), rgba(0,0,0,1));
+    opacity: 0.5;
+}
+
+.hub_module[data-module='spotify'] .center span {
+    display: block; 
+    margin-top: 5px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.hub_module[data-module='spotify'] .center span:empty {
+    transform: translate(0,-20px)
+}
+
+.hub_module[data-module='spotify'] .center span.name {
+    font-weight: bold;
+    line-height: 30px; font-size:25px;
+    height: 30px;
+    margin-top: 18px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.hub_module[data-module='spotify'] .progress {
+    position: absolute;
+    display: block;
+    bottom: 0; left: 0;
+    height: 4px; width: 100%;
+    background-color: rgb(255,255,255,0.1);
+}
+
+.hub_module[data-module='spotify'] .progress > div {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    transition: all 100ms linear;
+}
