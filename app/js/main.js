@@ -42,7 +42,7 @@ class View {
 class ModuleMangager {
 
     constructor(storage){
-        this.available = {ModuleClock,ModulePublictransport,ModuleNews,ModuleWeather,ModuleSpotify}
+        this.available = {ClockModule,PublicTransportModule,NewsModule,WeatherModule,SpotifyModule}
         this.storage = storage.getPointer("modules")
         this.modules = []
         
@@ -52,7 +52,7 @@ class ModuleMangager {
         var name = tile.getAttribute("data-module");
         if(!this.isAvailable(name)){ return false; }
         var m = this.getClass(name)
-        console.log("Module "+name+" loaded")
+        console.log(name+"Module loaded")
         this.modules.push(new m(tile,this.storage))
     }
 
@@ -61,7 +61,7 @@ class ModuleMangager {
     }
 
     getClassName(name){
-        return "Module"+name.charAt(0).toUpperCase()+name.slice(1)
+        return name+"Module"
     }
 
     getClass(name){
@@ -78,6 +78,7 @@ class Module {
         this.name = tile.getAttribute("data-module")
         this.storage = storage.getPointer(this.name);
         this.root = tile
+        this.path = "/modules/"+this.name.toLowerCase()+"/"
         this.setupCheck();
     }
 

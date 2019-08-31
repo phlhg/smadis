@@ -20,16 +20,16 @@ strong {font-weight: 400 !important;}
 }
 
 .hub_module_container .hub_module {
-    --gc: 1;
-    --gr: 1;
-    --gw: 1;
-    --gh: 1;
+    --left: 1;
+    --top: 1;
+    --width: 1;
+    --height: 1;
     position: relative;
     display: inline-block;
-    grid-column-start: var(--gc);
-    grid-row-start: var(--gr);
-    grid-column-end: span var(--gw);
-    grid-row-end: span var(--gh);
+    grid-column-start: var(--left);
+    grid-row-start: var(--top);
+    grid-column-end: span var(--width);
+    grid-row-end: span var(--height);
     border: 1px solid rgb(50,50,50);
     border-top: 0;
     border-left: 0;

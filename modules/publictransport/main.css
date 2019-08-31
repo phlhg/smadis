@@ -1,0 +1,53 @@
+.hub_module[data-module='PublicTransport'] .phub_connection {
+    display: block;
+    position: relative;
+    padding: 5px 0 12px 100px;
+    min-height: 40px;
+    font-size: 25px;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 85px;
+    background-color: #fff;
+    color: #000;
+    padding: 5px 8px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    border-radius: 2px; 
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.bus {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.ir {
+    background-color: #f00;
+    font-style: italic;
+    color: #fff;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.re {
+    color: #f00;
+    border: 2px solid #f00;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_meta {
+    display: block;
+    position: relative;
+    color: rgb(180,180,180);
+    font-size: 14px; 
+    line-height: 18px;
+    margin: 6px 0 0 0;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_meta > i {
+    height: 20px; width: 20px; vertical-align: text-bottom;
+}

@@ -1,0 +1,82 @@
+.hub_module[data-module='Weather'] {
+    padding-left: 240px;
+}
+
+.hub_module[data-module='Weather'] .icon {
+    position: absolute; 
+    display: block;
+    width: 200px;
+    height: calc(100% - 150px);
+    top: 40px; left: 40px;
+    background-size: 120% auto;
+    background-position: center;
+}
+
+.hub_module[data-module='Weather'] .temp {
+    position: absolute; 
+    display: inline-block;
+    top: calc(50% - 35px); left: 240px;
+    width: calc(100% - 280px);
+    text-align: center;
+    transform: translate(0,-50%);
+    font-size: 60px;
+}
+
+.hub_module[data-module='Weather'] .forecast_temp, .hub_module[data-module='Weather'] .forecast_rain {
+    position: absolute;
+    display: block;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hub_module[data-module='Weather'] .forecast_temp polygon, .hub_module[data-module='Weather'] .forecast_rain path {
+    fill: transparent;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hub_module[data-module='Weather'] .forecast_temp path {
+    stroke: rgba(255,0,0,0.6);
+}
+
+.hub_module[data-module='Weather'] .forecast_rain path {
+    fill: rgba(0, 182, 237, 0.4);
+}
+
+.hub_module[data-module='Weather'] .forecast_timeline {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.hub_module[data-module='Weather'] .forecast_timeline > span {
+    position: relative;
+    display: block;
+    padding: 40px 5px 10px 5px;
+    width: 50px;
+    text-align: center;
+    color: rgb(255,255,255,0.5);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.hub_module[data-module='Weather'] .forecast_timeline > span > span{
+    display: block;
+    font-weight: bold;
+    color: #fff;
+}
+
+.hub_module[data-module='Weather'] .forecast_timeline > span > img {
+    position: absolute;
+    display: block;
+    left: 5px; top: 0;
+    width: 40px; height: 40px;
+}

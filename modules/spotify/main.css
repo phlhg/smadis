@@ -1,0 +1,93 @@
+
+.hub_module[data-module='Spotify'] .center span {
+    transition: all 0.2s ease-in-out;
+}
+
+.hub_module[data-module='Spotify'] {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+}
+
+.hub_module[data-module='Spotify'] .center {
+    display: inline-block;
+    position: relative;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    max-width: calc(100% - 40px);
+    z-index: +1;
+}
+
+.hub_module[data-module='Spotify'] .center .img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    outline: 0; border: none;
+    background-color: rgb(255,255,255,0.05);
+    background-position: center;
+    background-size: cover;
+}
+
+.hub_module[data-module='Spotify'] .bg {
+    display: block;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 30vw;
+    height: 30vw;
+    background-position: center;
+    background-size: cover;
+    filter: blur(50px);
+    opacity: 0.5;
+}
+
+.hub_module[data-module='Spotify']:after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(closest-side, rgba(0,0,0,0), rgba(0,0,0,1));
+    opacity: 0.5;
+}
+
+.hub_module[data-module='Spotify'] .center span {
+    display: block; 
+    margin-top: 5px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.hub_module[data-module='Spotify'] .center span:empty {
+    transform: translate(0,-20px)
+}
+
+.hub_module[data-module='Spotify'] .center span.name {
+    font-weight: bold;
+    line-height: 30px; font-size:25px;
+    height: 30px;
+    margin-top: 18px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.hub_module[data-module='Spotify'] .progress {
+    position: absolute;
+    display: block;
+    bottom: 0; left: 0;
+    height: 4px; width: 100%;
+    background-color: rgb(255,255,255,0.1);
+}
+
+.hub_module[data-module='Spotify'] .progress > div {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    transition: all 100ms linear;
+}

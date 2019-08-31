@@ -1,0 +1,32 @@
+.hub_module[data-module='Clock'] .hub_center {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.hub_module[data-module='Clock'] .hub_time {
+    display: block;
+    line-height: 300px;
+    font-size: 300px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.hub_module[data-module='Clock'] .hub_time > span {
+    line-height: inherit;
+    font-size: inherit;
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+}
+
+.hub_module[data-module='Clock'] .hub_date {
+    display: block;
+    line-height: 50px;
+    font-size: 50px;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 10px;
+}
