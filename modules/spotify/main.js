@@ -60,7 +60,7 @@ class SpotifyModule extends Module {
                 this.img.style.backgroundImage = "url("+current.item.album.images[0].url+")"
                 this.bg.style.backgroundImage = "url("+current.item.album.images[0].url+")"
             } else {
-                this.img.style.backgroundImage = "/img/spotify/icon.png"
+                this.img.style.backgroundImage = ""
                 this.bg.style.backgroundImage = ""
             }
             this.name.innerHTML = current.item.name
@@ -71,7 +71,7 @@ class SpotifyModule extends Module {
             }
             if(current.progress_ms){ this.progress.style.width = ((current.progress_ms/current.item.duration_ms)*100)+"%" }
         } else {
-            this.img.style.backgroundImage = "/img/spotify/icon.png"
+            this.img.style.backgroundImage = ""
             this.bg.style.backgroundImage = ""
             this.name.innerHTML = ""
             this.artist.innerHTML = ""
