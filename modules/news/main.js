@@ -37,7 +37,7 @@ class NewsModule extends Module {
                 <div class="image" style="background-image: url(`+article.urlToImage+`)"></div>
                 <span class="center">
                     <span class="title">`+article.title.split(" - ")[0]+`</span>
-                    `+dbl(d.getHours())+`:`+dbl(d.getMinutes())+`
+                    `+(article.urlToImage ? article.urlToImage.split("://")[1].split("/")[0].split(".").slice(1).join(".") : "Anonymous")+`
                 </span>
             </article>`
         }
