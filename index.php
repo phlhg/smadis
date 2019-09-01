@@ -1,6 +1,6 @@
 <?php
-    $modules = array_filter(array_diff(scandir($_SERVER["DOCUMENT_ROOT"]."modules/"),array(".","..")),function($f){
-        return is_dir($_SERVER["DOCUMENT_ROOT"]."modules/".$f);
+    $modules = array_filter(array_diff(scandir($_SERVER["DOCUMENT_ROOT"]."/modules/"),array(".","..")),function($f){
+        return is_dir($_SERVER["DOCUMENT_ROOT"]."/modules/".$f);
     });
 ?>
 <!DOCTYPE html>
