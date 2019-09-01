@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PHUB by phlhg</title>
+        <title>SMADIS by phlhg</title>
         <meta charset="UTF-8"/>
         <!-- APP -->
         <link href="/app/css/style.css" rel="stylesheet" />
