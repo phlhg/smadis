@@ -22,7 +22,7 @@ class NewsModule extends Module {
         this.pages = this.root.querySelectorAll(".page")
         this.loadAPI();
         this.nextStep()
-        this.interval = setInterval(this.loadAPI.bind(this),1000*60*30)
+        this.interval = setInterval(this.loadAPI.bind(this),1000*60)
         this.stepper = setInterval(this.nextStep.bind(this),1000*20)
     }
 
