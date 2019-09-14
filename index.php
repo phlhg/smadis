@@ -1,6 +1,8 @@
 <?php
-    $modules = array_filter(array_diff(scandir($_SERVER["DOCUMENT_ROOT"]."/modules/"),array(".","..")),function($f){
-        return is_dir($_SERVER["DOCUMENT_ROOT"]."/modules/".$f);
+    $dir = "/phub/";
+    $modules = array_filter(array_diff(scandir($_SERVER["DOCUMENT_ROOT"].$dir."modules/"),array(".","..")),function($f){
+        global $dir;
+        return is_dir($_SERVER["DOCUMENT_ROOT"].$dir."modules/".$f);
     });
 ?>
 <!DOCTYPE html>
@@ -9,13 +11,14 @@
         <title>SMADIS by phlhg</title>
         <meta charset="UTF-8"/>
         <!-- APP -->
-        <link href="/app/css/style.css" rel="stylesheet" />
-        <script src="/app/js/config.js"></script>
-        <script src="/app/js/main.js"></script>
+        <link href="<?=$dir?>app/css/style.css" rel="stylesheet" />
+        <script src="<?=$dir?>app/js/config.js"></script>
+        <script src="<?=$dir?>app/js/main.js"></script>
+        <script> DIR = "<?=$dir?>"; </script>
         <?php foreach($modules as $m){ ?>
         <!-- MODULE: <?=strtoupper($m)?> -->
-        <link href="/modules/<?=$m?>/main.css" rel="stylesheet" />
-        <script src="/modules/<?=$m?>/main.js"></script>
+        <link href="<?=$dir?>/modules/<?=$m?>/main.css" rel="stylesheet" />
+        <script src="<?=$dir?>/modules/<?=$m?>/main.js"></script>
         <?php } ?>
         <!-- FONTS -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700&display=swap" rel="stylesheet"> 
