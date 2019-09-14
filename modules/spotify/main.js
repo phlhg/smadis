@@ -22,7 +22,8 @@ class SpotifyModule extends Module {
         this.artist = this.root.querySelector(".artist")
         this.progress = this.root.querySelector(".progress > div")
         if(!this.authenticate()){
-            this.img.onclick = this.openSpotify.bind(this)
+            this.storage.set("authenticated",false);
+            if(confirm("Bei Spotify anmelden?")){ this.openSpotify(); }
             return;
         }
         this.loadAPI()
@@ -35,7 +36,7 @@ class SpotifyModule extends Module {
         fetch('https://api.spotify.com/v1/me/player/currently-playing', {
             'headers': { 'Authorization': 'Bearer ' + this.storage.get("code").access_token }
         }).then(function(response){
-            if(response.status == 401){ this.storage.set("authenticated",false); this.img.onclick = this.openSpotify.bind(this); clearInterval(this.interval); return; }
+            if(response.status == 401){ this.storage.set("authenticated",false); this.openSpotify(); return; }
             if(response.status != 200){ this.apiloaded(""); return false; }
             return response.json();
         }.bind(this)).then(function(data){
@@ -97,7 +98,7 @@ class SpotifyModule extends Module {
     }
 
     openSpotify(){
-        window.location.href = 'https://accounts.spotify.com/authorize?client_id='+this.clientID+'&redirect_uri=http://localhost&response_type=token'
+        window.location.href = 'https://accounts.spotify.com/authorize?client_id='+this.clientID+'&redirect_uri=http://'+location.hostname+DIR+'&response_type=token'
     }
 
     setup(){
