@@ -39,6 +39,12 @@
     border: 2px solid #f00;
 }
 
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.sn {
+    color: #ffd000;
+    border: 2px solid #ffd000;
+    background-color: #000;
+}
+
 .hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_meta {
     display: block;
     position: relative;
