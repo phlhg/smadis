@@ -25,9 +25,6 @@
     visibility: visible;
 }
 
-.hub_module[data-module='News'] .page.next {
-}
-
 .hub_module[data-module='News'] article {
     display: block;
     position: relative;
