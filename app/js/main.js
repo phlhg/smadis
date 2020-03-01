@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
+    document.querySelector(".hub_module_container").click(function(){ window.location.reload(true) })
     APP = new App();
 })
 

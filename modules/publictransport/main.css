@@ -23,7 +23,7 @@
 }
 
 .hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.bus {
-    background-color: #000;
+    background-color: #111;
     color: #fff;
     border: 1px solid #fff;
 }

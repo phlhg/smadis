@@ -57,6 +57,7 @@ class SpotifyModule extends Module {
         var current = this.storage.get("current")
         if(!this.new && current.progress_ms){ current.progress_ms = current.progress_ms+1000;  } else { this.new = false; }
         if(current.item){
+            this.root.classList.remove("inactive")
             if(current.item.album.images[0]){
                 this.img.style.backgroundImage = "url("+current.item.album.images[0].url+")"
                 this.bg.style.backgroundImage = "url("+current.item.album.images[0].url+")"
@@ -72,6 +73,7 @@ class SpotifyModule extends Module {
             }
             if(current.progress_ms){ this.progress.style.width = ((current.progress_ms/current.item.duration_ms)*100)+"%" }
         } else {
+            this.root.classList.add("inactive")
             this.img.style.backgroundImage = ""
             this.bg.style.backgroundImage = ""
             this.name.innerHTML = ""
