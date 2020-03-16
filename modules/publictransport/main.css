@@ -23,7 +23,7 @@
 }
 
 .hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.bus {
-    background-color: #000;
+    background-color: #111;
     color: #fff;
     border: 1px solid #fff;
 }
@@ -37,6 +37,12 @@
 .hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.re {
     color: #f00;
     border: 2px solid #f00;
+}
+
+.hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name.sn {
+    color: #ffd000;
+    border: 2px solid #ffd000;
+    background-color: #000;
 }
 
 .hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_meta {

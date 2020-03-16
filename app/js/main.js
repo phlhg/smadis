@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded",function(){
+    document.querySelector(".hub_module_container").click(function(){ window.location.reload(true) })
     APP = new App();
 })
+
+window.onerror = function(msg, url, linenumber) {
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
+}
 
 /*  ======================
           APPLICATION
@@ -78,7 +84,7 @@ class Module {
         this.name = tile.getAttribute("data-module")
         this.storage = storage.getPointer(this.name);
         this.root = tile
-        this.path = "/modules/"+this.name.toLowerCase()+"/"
+        this.path = DIR+"modules/"+this.name.toLowerCase()+"/"
         this.setupCheck();
     }
 

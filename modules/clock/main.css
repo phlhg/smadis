@@ -19,7 +19,7 @@
     font-size: inherit;
     display: inline-block;
     text-align: center;
-    width: 180px;
+    width: 200px;
 }
 
 .hub_module[data-module='Clock'] .hub_date {
