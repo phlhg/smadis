@@ -100,7 +100,7 @@ class SpotifyModule extends Module {
     }
 
     openSpotify(){
-        window.location.href = 'https://accounts.spotify.com/authorize?client_id='+this.clientID+'&redirect_uri=http://'+location.hostname+DIR+'&response_type=token'
+        window.location.href = `https://accounts.spotify.com/authorize?client_id=${this.clientID}&redirect_uri=http://${location.hostname}${location.port != "" ? ":" + location.port : ""}${location.pathname}&response_type=token`
     }
 
     setup(){

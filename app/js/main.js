@@ -84,7 +84,7 @@ class Module {
         this.name = tile.getAttribute("data-module")
         this.storage = storage.getPointer(this.name);
         this.root = tile
-        this.path = DIR+"modules/"+this.name.toLowerCase()+"/"
+        this.path = window.location.pathname+"modules/"+this.name.toLowerCase()+"/"
         this.setupCheck();
     }
 
