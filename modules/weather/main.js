@@ -62,7 +62,7 @@ class WeatherModule extends Module {
 
     loadAPI(){
         if(Date.now() < this.storage.get("next")){ this.update(); return; }
-        fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+this.lat+'&lon='+this.lon+'&appid='+this.key).then(function(response){
+        this.fetch('http://api.openweathermap.org/data/2.5/forecast?lat='+this.lat+'&lon='+this.lon+'&appid='+this.key).then(function(response){
             if(!response.ok){ return false; }
             return response.json();
         }).then(function(data){
@@ -76,7 +76,7 @@ class WeatherModule extends Module {
 
     loadAPI2(){
         if(Date.now() < this.storage.get("next")){ this.update(); return; }
-        fetch('http://api.openweathermap.org/data/2.5/weather?lat='+this.lat+'&lon='+this.lon+'&appid='+this.key).then(function(response){
+        this.fetch('http://api.openweathermap.org/data/2.5/weather?lat='+this.lat+'&lon='+this.lon+'&appid='+this.key).then(function(response){
             if(!response.ok){ return false; }
             return response.json();
         }).then(function(data){

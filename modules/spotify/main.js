@@ -18,7 +18,7 @@ class SpotifyModule extends Module {
         this.root.innerHTML = '<div class="bg"></div><div class="center"><div class="img" style="background-image: url();"></div><span class="name"></span><span class="artist"></span></div><div class="progress"><div></div></div>'
         this.img = this.root.querySelector(".img")
         this.bg = this.root.querySelector(".bg")
-        this.name = this.root.querySelector(".name")
+        this.name2 = this.root.querySelector(".name")
         this.artist = this.root.querySelector(".artist")
         this.progress = this.root.querySelector(".progress > div")
         if(!this.authenticate()){
@@ -33,7 +33,7 @@ class SpotifyModule extends Module {
     
     loadAPI(){
         if(Date.now() < parseInt(this.storage.get("next")) || this.storage.get("authenticated") == false){ this.update(); return; }
-        fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+        this.fetch('https://api.spotify.com/v1/me/player/currently-playing', {
             'headers': { 'Authorization': 'Bearer ' + this.storage.get("code").access_token }
         }).then(function(response){
             if(response.status == 401){ this.storage.set("authenticated",false); this.openSpotify(); return; }
@@ -65,7 +65,7 @@ class SpotifyModule extends Module {
                 this.img.style.backgroundImage = ""
                 this.bg.style.backgroundImage = ""
             }
-            this.name.innerHTML = current.item.name
+            this.name2.innerHTML = current.item.name
             this.artist.innerHTML = ""
             for(var i = 0; i < current.item.artists.length; i++){ 
                 if(i > 0){ this.artist.innerHTML += ", " }
@@ -76,7 +76,7 @@ class SpotifyModule extends Module {
             this.root.classList.add("inactive")
             this.img.style.backgroundImage = ""
             this.bg.style.backgroundImage = ""
-            this.name.innerHTML = ""
+            this.name2.innerHTML = ""
             this.artist.innerHTML = ""
             this.progress.style.width = 0
         }
@@ -105,7 +105,7 @@ class SpotifyModule extends Module {
 
     setup(){
         this.storage.set("next",0);
-        this.storage.set("auth",false)
+        this.storage.set("authenticated",false)
         this.storage.set("code","")
         this.setupFinished()
     }

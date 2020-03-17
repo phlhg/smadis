@@ -47,7 +47,7 @@ class NewsModule extends Module {
 
     loadAPI(){
         if(Date.now() < this.storage.get("next")){ this.update(); return; }
-        fetch("https://newsapi.org/v2/top-headlines?country=ch&apiKey="+this.key).then(function(response){
+        this.fetch("https://newsapi.org/v2/top-headlines?country=ch&apiKey="+this.key).then(function(response){
             if(!response.ok){ return false; }
             return response.json();
         }).then(function(data){

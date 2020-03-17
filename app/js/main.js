@@ -16,8 +16,7 @@ class App {
 
     constructor(){
         this.storage = new Storage();
-        this.pointer = this.storage.getPointer("")
-        this.modules = new ModuleMangager(this.pointer)
+        this.modules = new ModuleMangager(this.storage.getPointer("modules"))
         this.view = new View(this.modules);
     }
 
@@ -49,7 +48,7 @@ class ModuleMangager {
 
     constructor(storage){
         this.available = {ClockModule,PublicTransportModule,NewsModule,WeatherModule,SpotifyModule}
-        this.storage = storage.getPointer("modules")
+        this.storage = storage
         this.modules = []
         
     }
@@ -85,6 +84,7 @@ class Module {
         this.storage = storage.getPointer(this.name);
         this.root = tile
         this.path = window.location.pathname+"modules/"+this.name.toLowerCase()+"/"
+        this._cache = {}
         this.setupCheck();
     }
 
@@ -98,6 +98,20 @@ class Module {
 
     init(){} //DEFAULT
 
+    fetch(uri,headers){
+        console.log(`[${this.name.toUpperCase()}] Requesting ${uri}`)
+        return new Promise((resolve,reject) => {
+            fetch(uri,headers).then(response => {
+                this._cache[encodeURI(uri)] = response
+                return resolve(response)
+            }).catch(e => {
+                if(navigator.online){ return reject(e) }
+                if(!this._cache.hasOwnProperty(encodeURI(uri))){ return reject(e) }
+                return resolve(this._cache[encodeURI(uri)])
+            })
+        })
+    }
+
 }
 
 /*  ======================
@@ -107,98 +121,96 @@ class Module {
 class Storage {
 
     constructor(){
-        this.root = []
-        this.loaded = false
-        this.data = {
-            "storage": {
-                "lastaccess": 0,
-                "laststore": 0
-            },
-            "app": {
 
-            },
-            "modules": {
+        this.name = "smadisStorage"
+        this.data = {}
+        this.pointers = []
 
-            }
+    }
+
+    get(path,defaultValue){
+        this.pull()
+        if(!this.exists(path)){ return defaultValue }
+        return this.data[Storage.path2name(path)]
+    }
+
+    set(path,value){
+        this.pull()
+        this.data[Storage.path2name(path)] = value
+        this.push()
+    }
+
+    remove(path){
+        this.pull()
+        if(!this.exists(path)){ return false }
+        delete this.data[Storage.path2name(path)]
+        this.push()
+        return true
+    }
+    
+    exists(path){
+        this.pull()
+        return this.data.hasOwnProperty(Storage.path2name(path))
+    }
+
+    pull(){
+        try {
+            this.init()
+            this.data = JSON.parse(localStorage.getItem(this.name))
+            return true
+        } catch(e) {
+            console.warn("Storage was reset, because it was corrupted")
+            this.data = {}
+            return false
         }
-        this.load()
     }
 
-    get(location){
-        var pointer = this.data
-        for(var i = 0; i < location.length-1; i++){
-            pointer = pointer[location[i]]  
-        }
-        return pointer[location[location.length-1]];
-    }
-
-    exists(location){
-        var pointer = this.data
-        for(var i = 0; i < location.length-1; i++){ 
-            if(!pointer.hasOwnProperty(location[i])){ return false; }
-            pointer = pointer[location[i]]; 
-        }
-        return true;
-    }
-
-    set(location, value){
-        var pointer = this.data
-        for(var i = 0; i < location.length-1; i++){ 
-            if(!pointer.hasOwnProperty(location[i])){ pointer[location[i]] = {}; }
-            pointer = pointer[location[i]]; 
-        }
-        pointer[location[location.length-1]] = value
-        this.store()
-    }
-
-    load(){
-        if(localStorage.getItem(Storage.name) == null){ this.init() }
-        this.data = {...this.data, ...JSON.parse(localStorage.getItem(Storage.name))}
-        this.set("storage/lastaccess".split("/"),Date.now())
-        this.loaded = true
-    }
-
-    store(){
-        this.data.storage.laststore = Date.now()
-        localStorage.setItem(Storage.name,JSON.stringify(this.data));
-    }
-
-    getPointer(location){
-        return new StoragePointer(this,this.root.concat(location.split("/").filter(l => l != "")))
+    push(){
+        localStorage.setItem(this.name,JSON.stringify(this.data))
     }
 
     init(){
-        this.store()
+        if(localStorage.getItem(this.name) == null){ 
+            this.push()
+        }
+    }
+
+    getPointer(path){
+        return new StoragePointer(this,path)
+    }
+    
+    static path2name(path){
+        return "/"+path.toLowerCase().replace(/[\/]+/g,"/").replace(/(^\/|\/$)/g,"")
     }
 
 }
 
-Storage.name = "phub_storage"
-
 class StoragePointer {
     
-    constructor(storage, location){
-        if(storage == undefined){ return false; }
+    constructor(storage, root){
         this.storage = storage
-        this.root = this.storage.root.concat(location)
+        this.root = root
         this.pointers = []
     }
 
-    get(location){
-        return this.storage.get(this.root.concat(location.split("/")))
+    get(path,defaultValue){
+        return this.storage.get(`${this.root}/${path}`,defaultValue)
     }
 
-    exists(location){
-        return this.storage.exists(this.root.concat(location.split("/")))
+    set(path, value){
+        return this.storage.set(`${this.root}/${path}`,value)
     }
 
-    set(location, value){
-        return this.storage.set(this.root.concat(location.split("/")),value)
+    exists(path){
+        return this.storage.exists(`${this.root}/${path}`)
     }
 
-    getPointer(location){
-        this.pointers.push(new StoragePointer(this.storage,this.root.concat(location.split("/").filter(l => l != ""))))
-        return this.pointers[this.pointers.length-1]
+    remove(path){
+        return this.storage.remove(`${this.root}/${path}`)
+    }
+
+    getPointer(path){
+        return new StoragePointer(this.storage,`${this.root}/${path}`)
     }
 
 }
