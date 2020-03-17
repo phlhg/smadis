@@ -1,0 +1,1 @@
+RewriteRule (^\.|\.md$) - [F,L,NC]
