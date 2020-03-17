@@ -1,2 +1,6 @@
+RewriteEngine On
+
+Options -Indexes
+
 RewriteRule ^\. - [F,L,NC]
 RewriteRule \.md$ - [F,L,NC]
