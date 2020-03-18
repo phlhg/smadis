@@ -100,6 +100,9 @@ class Module {
 
     fetch(uri,headers){
         console.log(`[${this.name.toUpperCase()}] Requesting ${uri}`)
+        return fetch(uri,headers)
+        
+        /*
         return new Promise((resolve,reject) => {
             fetch(uri,headers).then(response => {
                 this._cache[encodeURI(uri)] = response
@@ -110,6 +113,7 @@ class Module {
                 return resolve(this._cache[encodeURI(uri)])
             })
         })
+        */
     }
 
 }
