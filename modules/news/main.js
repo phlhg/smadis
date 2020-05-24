@@ -47,7 +47,9 @@ class NewsModule extends Module {
 
     loadAPI(){
         if(Date.now() < this.storage.get("next")){ this.update(); return; }
-        this.fetch("https://newsapi.org/v2/top-headlines?country=ch&apiKey="+this.key).then(function(response){
+        this.fetch("https://newsapi.org/v2/top-headlines?country=ch&apiKey="+this.key,{
+            mode: 'cors'
+        }).then(function(response){
             if(!response.ok){ return false; }
             return response.json();
         }).then(function(data){
@@ -59,6 +61,7 @@ class NewsModule extends Module {
             this.update()
         }.bind(this)).catch(function(error){
             console.log("[NEWS] "+error)
+            this.storage.set("next",Date.now()+1000*60*30)
         })
     }
 
