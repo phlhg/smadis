@@ -32,7 +32,7 @@ class NewsModule extends Module {
             var pageID = Math.floor(i/4)
             if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
             var article = this.storage.get("data")[i]
-            var split = (article.title ? article.title : "").split(" - ")
+            var split = (article.hasOwnProperty("title") ? article.title : "").split(" - ")
             split.pop()
             var title = split.join(" - ")
             this.pages[pageID].innerHTML += 
