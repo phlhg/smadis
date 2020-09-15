@@ -55,7 +55,8 @@ class NewsModule extends Module {
         }).then(function(data){
             this.new = true;
             this.storage.set("data",data.articles.filter(function(article){
-                return (!article.title.toLowerCase().includes("fussball") && !article.title.toLowerCase().includes("?"))
+                var title = (article.hasOwnProperty("title") ? article.title : "").toLowerCase()
+                return (!title.includes("fussball") && !article.title.includes("?"))
             }))
             this.storage.set("next",Date.now()+1000*60*30)
             this.update()
