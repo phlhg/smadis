@@ -20,8 +20,8 @@ class ClockModule extends Module {
     }
 
     update(){
-        var days = ["So","Mo","Di","Mi","Do","Fr","Sa"]
-        var months = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+        var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+        var months = ["January","Feburary","March","April","May","June","July","August","September","October","November","December"]
         var d = new Date();
         var time = this.dbl(d.getHours())+this.dbl(d.getMinutes())
         for(var i = 0; i < this.times.length; i++){ this.times[i].innerHTML = time.charAt(i) }
