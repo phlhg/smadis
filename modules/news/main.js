@@ -10,7 +10,7 @@ class NewsModule extends Module {
         this.key = __CONFIG["newsapi_key"]
         this.new = true;
         this.step = 0;
-        this.sites = 4;
+        this.sites = 6;
         this.interval;
         this.init()
     }
