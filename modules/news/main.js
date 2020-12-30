@@ -28,6 +28,7 @@ class NewsModule extends Module {
 
     update(){
         if(this.new == false){ return; }
+        console.log(this.storage.get("data").length);
         for(var i = 0; i < this.sites*4; i++){
             var pageID = Math.floor(i/4)
             if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
@@ -51,14 +52,15 @@ class NewsModule extends Module {
             .then(response => response.text())
             .then(str => new DOMParser().parseFromString(str, "text/xml"))
             .then(data => {
-                var articles = [];
-                var items = Array.from(data.querySelectorAll("item")).slice(0,this.sites*4);
+                var articles = {};
+                var items = Array.from(data.querySelectorAll("item"));
                 var i = 0;
-                while(articles.length < this.sites*4 && i < items.length){
+                while(Object.values(articles).length < this.sites*4 && i < items.length){
 
                     let item = items[i];
                     let title = item.querySelector("title").textContent;
                     let description = item.querySelector("description").textContent;
+                    let link = item.querySelector("link").textContent;
                     let img = "";
 
                     let span = document.createElement("span");
@@ -67,20 +69,20 @@ class NewsModule extends Module {
                     description = span.innerText;
                     img = span.querySelector("img").getAttribute("src");
 
-                    if(!title.includes("fussball")){
-                        articles.push({
+                    if(!articles.hasOwnProperty(link)){
+                        articles[link] = {
                             "title": title,
                             "description": description,
                             "img": img
-                        });
+                        };
                     }
 
                     i++;
                     
-                };
+                }
                 
                 this.new = true;
-                this.storage.set("data",articles)
+                this.storage.set("data",Object.values(articles).slice(0,this.sites*4));
                 this.storage.set("next",Date.now()+1000*60*30)
                 this.update();
             });
