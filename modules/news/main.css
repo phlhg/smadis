@@ -73,15 +73,25 @@
 }
 
 
-.hub_module[data-module='News'] article .title {
+.hub_module[data-module='News'] article .content {
     position: absolute;
+    display: block;
     bottom: 20px;
     left: 20px;
     color: #fff;
+    font-size: 16px;
+    line-height: 21px;
+    width: calc(100% - 40px);
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.5), -2px -2px 20px rgba(0,0,0,0.5);
+}
+
+.hub_module[data-module='News'] article .title {
+    position: relative;
+    color: #fff;
     font-size: 22px;
     line-height: 27px;
-    width: calc(100% - 40px);
     display: block;
     font-weight: bold;
     text-shadow: 2px 2px 20px rgba(0,0,0,0.5), -2px -2px 20px rgba(0,0,0,0.5);
+    margin-bottom: 5px;
 }

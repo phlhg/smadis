@@ -32,14 +32,14 @@ class NewsModule extends Module {
             var pageID = Math.floor(i/4)
             if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
             var article = this.storage.get("data")[i]
-            var split = (article.hasOwnProperty("title") ? article.title : "").split(" - ")
-            split.pop()
-            var title = split.join(" - ")
             this.pages[pageID].innerHTML += 
             `<article>
-                <div class="image" style="background-image: url(`+article.urlToImage+`)"></div>
-                <span class="meta">`+article.source.name.toLowerCase().replace("www.","")+`</span>
-                <span class="title">`+title.slice(0,120)+`</span>
+                <div class="image" style="background-image: url(`+article.img+`)"></div>
+                <span class="meta">srf.ch</span>
+                <span class="content">
+                    <span class="title">`+article.title+`</span>
+                    <span class="description">`+article.description+`</span>
+                </span>
             </article>`
         }
         this.new = false;
@@ -47,23 +47,43 @@ class NewsModule extends Module {
 
     loadAPI(){
         if(Date.now() < this.storage.get("next")){ this.update(); return; }
-        this.fetch("https://newsapi.org/v2/top-headlines?country=ch&apiKey="+this.key,{
-            mode: 'cors'
-        }).then(function(response){
-            if(!response.ok){ return false; }
-            return response.json();
-        }).then(function(data){
-            this.new = true;
-            this.storage.set("data",data.articles.filter(function(article){
-                var title = (article.hasOwnProperty("title") ? article.title : "").toLowerCase()
-                return (!title.includes("fussball") && !article.title.includes("?"))
-            }))
-            this.storage.set("next",Date.now()+1000*60*30)
-            this.update()
-        }.bind(this)).catch(function(error){
-            console.log("[NEWS] "+error)
-            this.storage.set("next",Date.now()+1000*60*30)
-        })
+        this.fetch("rss.php")
+            .then(response => response.text())
+            .then(str => new DOMParser().parseFromString(str, "text/xml"))
+            .then(data => {
+                var articles = [];
+                var items = Array.from(data.querySelectorAll("item")).slice(0,this.sites*4);
+                var i = 0;
+                while(articles.length < this.sites*4 && i < items.length){
+
+                    let item = items[i];
+                    let title = item.querySelector("title").textContent;
+                    let description = item.querySelector("description").textContent;
+                    let img = "";
+
+                    let span = document.createElement("span");
+                    span.innerHTML = description;
+
+                    description = span.innerText;
+                    img = span.querySelector("img").getAttribute("src");
+
+                    if(!title.includes("fussball")){
+                        articles.push({
+                            "title": title,
+                            "description": description,
+                            "img": img
+                        });
+                    }
+
+                    i++;
+                    
+                };
+                
+                this.new = true;
+                this.storage.set("data",articles)
+                this.storage.set("next",Date.now()+1000*60*30)
+                this.update();
+            });
     }
 
     nextStep(){
