@@ -31,7 +31,7 @@ class NewsModule extends Module {
         for(var i = 0; i < this.sites*4; i++){
             var pageID = Math.floor(i/4)
             if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
-            var article = this.storage.get("data")[i]
+            var article = this.storage.get("data")[i];
             this.pages[pageID].innerHTML += 
             `<article>
                 <div class="image" style="background-image: url(`+article.img+`)"></div>
