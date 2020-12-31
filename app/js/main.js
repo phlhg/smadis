@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
-    document.body.onclick = function(){ window.location.reload(); }
+    document.body.onclick = function(){ 
+        window.location.reload(true); 
+    }
     APP = new App();
 })
 
