@@ -28,26 +28,29 @@ class NewsModule extends Module {
 
     update(){
         if(this.new == false){ return; }
-        console.log(this.storage.get("data").length);
         for(var i = 0; i < this.sites*4; i++){
-            var pageID = Math.floor(i/4)
-            if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
-            var article = this.storage.get("data")[i];
-            this.pages[pageID].innerHTML += 
-            `<article>
-                <div class="image" style="background-image: url(`+article.img+`)"></div>
-                <span class="meta">srf.ch</span>
-                <span class="content">
-                    <span class="title">`+article.title+`</span>
-                    <span class="description">`+article.description+`</span>
-                </span>
-            </article>`
+            if(this.storage.get("data").length > i){
+                var pageID = Math.floor(i/4)
+                if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
+                var article = this.storage.get("data")[i];
+                console.log((Date.now() - article.date));
+                this.pages[pageID].innerHTML += 
+                `<article `+((Date.now() - article.date) < 3*60*60*1000 ? `class="breaking"` : '')+`>
+                    <div class="image" style="background-image: url(`+article.img+`)"></div>
+                    <span class="meta">srf.ch</span>
+                    <span class="break">Aktuell</span>
+                    <span class="content">
+                        <span class="title">`+article.title+`</span>
+                        <span class="description">`+article.description+`</span>
+                    </span>
+                </article>`
+            }
         }
         this.new = false;
     }
 
     loadAPI(){
-        if(Date.now() < this.storage.get("next")){ this.update(); return; }
+        //if(Date.now() < this.storage.get("next")){ this.update(); return; }
         this.fetch("rss.php")
             .then(response => response.text())
             .then(str => new DOMParser().parseFromString(str, "text/xml"))
@@ -61,6 +64,7 @@ class NewsModule extends Module {
                     let title = item.querySelector("title").textContent;
                     let description = item.querySelector("description").textContent;
                     let link = item.querySelector("link").textContent;
+                    let date = Date.parse(item.querySelector("pubDate").textContent);
                     let img = "";
 
                     let span = document.createElement("span");
@@ -73,7 +77,8 @@ class NewsModule extends Module {
                         articles[link] = {
                             "title": title,
                             "description": description,
-                            "img": img
+                            "img": img,
+                            "date": date
                         };
                     }
 
