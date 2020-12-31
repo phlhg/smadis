@@ -50,7 +50,7 @@ class NewsModule extends Module {
     }
 
     loadAPI(){
-        //if(Date.now() < this.storage.get("next")){ this.update(); return; }
+        if(Date.now() < this.storage.get("next")){ this.update(); return; }
         this.fetch("rss.php")
             .then(response => response.text())
             .then(str => new DOMParser().parseFromString(str, "text/xml"))
