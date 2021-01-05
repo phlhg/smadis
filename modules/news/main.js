@@ -33,7 +33,6 @@ class NewsModule extends Module {
                 var pageID = Math.floor(i/4)
                 if(i%4 == 0){ this.pages[pageID].innerHTML = "" }
                 var article = this.storage.get("data")[i];
-                console.log((Date.now() - article.date));
                 this.pages[pageID].innerHTML += 
                 `<article `+((Date.now() - article.date) < 3*60*60*1000 ? `class="breaking"` : '')+`>
                     <div class="image" style="background-image: url(`+article.img+`)"></div>
