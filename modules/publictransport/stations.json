@@ -10,24 +10,24 @@
         "name": "Thalwil, Gewerbestrasse",
         "distance": 5,
         "connections": [
-            { "name": "142", "type": "bus", "time": 3, "heading": "Langnau a.A.", "last": 0, "first": 6},
-            { "name": "142", "type": "bus", "time": 28, "heading": "Langnau a.A.", "last": 14, "first": 7},
-            { "name": "142", "type": "bus", "time": 33, "heading": "Langnau a.A.", "last": 23, "first": 15}
+            { "name": "142", "type": "bus", "time": 3, "heading": "Thalwil, Zentrum", "last": 0, "first": 6},
+            { "name": "142", "type": "bus", "time": 28, "heading": "Thalwil, Zentrum", "last": 14, "first": 6},
+            { "name": "142", "type": "bus", "time": 33, "heading": "Thalwil, Zentrum", "last": 23, "first": 15}
         ]
     },{
         "name": "Thalwil, Schützenhaus",
         "distance": 8,
         "connections": [
-            { "name": "140", "type": "bus", "time": 13, "heading": "Thalwil, Zentrum", "last": 0, "first": 7},
-            { "name": "140", "type": "bus", "time": 43, "heading": "Thalwil, Zentrum", "last": 23, "first": 7},
-            { "name": "240", "type": "bus", "time": 50, "heading": "Thalwil, Bahnhof", "last": 19, "first": 7}
+            { "name": "140", "type": "bus", "time": 13, "heading": "Thalwil, Zentrum", "last": 0, "first": 6},
+            { "name": "140", "type": "bus", "time": 43, "heading": "Thalwil, Zentrum", "last": 23, "first": 5},
+            { "name": "240", "type": "bus", "time": 50, "heading": "Thalwil, Bahnhof", "last": 19, "first": 6}
         ]
     },{
         "name": "Thalwil",
         "distance": 18,
         "connections": [
             { "name": "S 2", "type": "s", "time": 29, "heading": "Zürich &#x2708;", "last": 22, "first": 6},
-            { "name": "S 2", "type": "s", "time": 59, "heading": "Zürich &#x2708;", "last": 22, "first": 5},
+            { "name": "S 2", "type": "s", "time": 59, "heading": "Zürich &#x2708;", "last": 22, "first": 6},
             { "name": "S 8", "type": "s", "time": 6, "heading": "Winterthur", "last": 0, "first": 6},
             { "name": "S 8", "type": "s", "time": 36, "heading": "Winterthur", "last": 0, "first": 5},
             { "name": "S 24", "type": "s", "time": 21, "heading": "Weinfelden", "last": 0, "first": 6},

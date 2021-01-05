@@ -3,7 +3,7 @@
     position: relative;
     padding: 5px 0 12px 100px;
     min-height: 40px;
-    font-size: 25px;
+    font-size: 23px;
 }
 
 .hub_module[data-module='PublicTransport'] .phub_connection .phub_connection_name{
