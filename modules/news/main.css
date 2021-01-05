@@ -102,14 +102,15 @@
     right: 15px;
     z-index: 10;
     color: #fff;
-    background: #c00;
+    background: transparent;
     font-size: 14px;   
-    font-weight: bold; 
-    display: none;
+    font-weight: normal; 
+    display: inline-block;
     padding: 5px 10px;
     border-radius: 4px;
 }
 
 .hub_module[data-module='News'] article.breaking .break {
-    display: inline-block;
+    background: #c00;
+    font-weight: bold; 
 }

@@ -38,8 +38,8 @@ class NewsModule extends Module {
                 `<article `+((Date.now() - article.date) < 3*60*60*1000 ? `class="breaking"` : '')+`>
                     <div class="image" style="background-image: url(`+article.img+`)"></div>
                     <span class="meta">srf.ch</span>
-                    <span class="break">Aktuell</span>
-                    <span class="content">
+                    <span class="break">`+(Math.round((Date.now() - article.date)/(1000*60*60)) < 1 ? 'Kürzlich' : Math.round((Date.now() - article.date)/(1000*60*60))+`h`) + `</span>
+                    <span class="content"> 
                         <span class="title">`+article.title+`</span>
                         <span class="description">`+article.description+`</span>
                     </span>
@@ -50,7 +50,7 @@ class NewsModule extends Module {
     }
 
     loadAPI(){
-        if(Date.now() < this.storage.get("next")){ this.update(); return; }
+        //if(Date.now() < this.storage.get("next")){ this.update(); return; }
         this.fetch("rss.php")
             .then(response => response.text())
             .then(str => new DOMParser().parseFromString(str, "text/xml"))
@@ -87,7 +87,12 @@ class NewsModule extends Module {
                 }
                 
                 this.new = true;
-                this.storage.set("data",Object.values(articles).slice(0,this.sites*4));
+                
+                var list = Object.values(articles);
+                list = list.sort((a,b) => b.date - a.date);
+                list.slice(0,this.sites*4);
+
+                this.storage.set("data",list);
                 this.storage.set("next",Date.now()+1000*60*30)
                 this.update();
             });
